@@ -1,0 +1,79 @@
+class Queue
+{
+    private int maxSize;
+    private long[] queueArr;
+    private int rear;
+    private int front;
+    private int nElem;
+    
+    public Queue(int m)
+    {
+        maxSize = m;
+        queueArr = new long[maxSize];
+        rear = -1;
+        front =0;
+        nElem =0;
+    }
+    
+    public void insert(long val)
+    {
+        if(rear == maxSize-1)
+            rear =-1;
+        queueArr[++rear]=val;
+        nElem++;
+    }
+    //-------------------------------
+    public long remove()
+    {
+        long temp =queueArr[front++];
+        if(front==maxSize)
+            front =0;
+        nElem--;
+        return temp;
+    }
+    //-------------------------------
+    public long peekFront()
+    {
+        return queueArr[front];
+    }
+    //-------------------------------
+    public boolean isEmpty()
+    {
+        return(nElem==0);
+    }
+    //------------------------------
+    public boolean isFull()
+    {
+        return(nElem==maxSize);
+    }
+    //----------------------------
+    public int size()
+    {
+        return (nElem);
+    }
+}
+public class QueueApp 
+{
+    public static void main(String[] args) 
+    {
+        Queue q = new Queue(6);
+        
+        q.insert(1);
+        q.insert(2);
+        q.insert(4);
+        q.insert(5);
+        
+        q.remove();
+        q.remove();
+        q.remove();
+        
+        q.insert(50);
+        q.insert(60);
+        q.insert(70);
+        while(!q.isEmpty())
+        {
+            System.out.println(q.remove());
+        }
+    }
+    
+}
